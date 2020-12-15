@@ -1,11 +1,11 @@
 <?php
 
-namespace Spatie\TypeScriptTransformer\Steps;
+namespace Spatie\TypeScriptTransformer\Actions;
 
 use Spatie\TypeScriptTransformer\Actions\ReplaceSymbolsInTypeAction;
 use Spatie\TypeScriptTransformer\Structures\TypesCollection;
 
-class ReplaceMissingSymbolsStep
+class ReplaceMissingSymbolsAction
 {
     public function execute(TypesCollection $collection): TypesCollection
     {

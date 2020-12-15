@@ -1,21 +1,21 @@
 <?php
 
-namespace Spatie\TypeScriptTransformer\Tests\Steps;
+namespace Spatie\TypeScriptTransformer\Tests\Actions;
 
 use PHPUnit\Framework\TestCase;
-use Spatie\TypeScriptTransformer\Steps\ReplaceMissingSymbolsStep;
+use Spatie\TypeScriptTransformer\Actions\ReplaceMissingSymbolsAction;
 use Spatie\TypeScriptTransformer\Structures\TypesCollection;
 use Spatie\TypeScriptTransformer\Tests\Fakes\FakeTransformedType;
 
-class ReplaceMissingSymbolsStepTest extends TestCase
+class ReplaceMissingSymbolsActionTest extends TestCase
 {
-    private ReplaceMissingSymbolsStep $action;
+    private ReplaceMissingSymbolsAction $action;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->action = new ReplaceMissingSymbolsStep();
+        $this->action = new ReplaceMissingSymbolsAction();
     }
 
     /** @test */
