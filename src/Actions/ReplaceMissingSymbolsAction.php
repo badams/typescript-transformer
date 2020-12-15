@@ -2,7 +2,6 @@
 
 namespace Spatie\TypeScriptTransformer\Actions;
 
-use Spatie\TypeScriptTransformer\Actions\ReplaceSymbolsInTypeAction;
 use Spatie\TypeScriptTransformer\Structures\TypesCollection;
 
 class ReplaceMissingSymbolsAction
