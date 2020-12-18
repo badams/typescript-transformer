@@ -25,7 +25,7 @@ class IntegrationTest extends TestCase
         $transformer = new TypeScriptTransformer(
             TypeScriptTransformerConfig::create()
                 ->searchingPath(__DIR__ . '/FakeClasses/Integration')
-                ->classPropertyReplacements([
+                ->defaultTypeReplacements([
                     DateTime::class => 'string',
                 ])
                 ->transformers([

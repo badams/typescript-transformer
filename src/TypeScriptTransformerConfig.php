@@ -5,7 +5,7 @@ namespace Spatie\TypeScriptTransformer;
 use phpDocumentor\Reflection\Type;
 use phpDocumentor\Reflection\TypeResolver;
 use Spatie\TypeScriptTransformer\Collectors\AnnotationCollector;
-use Spatie\TypeScriptTransformer\Exceptions\InvalidClassPropertyReplacer;
+use Spatie\TypeScriptTransformer\Exceptions\InvalidDefaultTypeReplacer;
 
 class TypeScriptTransformerConfig
 {
@@ -17,7 +17,7 @@ class TypeScriptTransformerConfig
 
     private string $outputFile = 'types.d.ts';
 
-    private array $classPropertyReplacements = [];
+    private array $defaultTypeReplacements = [];
 
     private bool $enableFormatting = false;
 
@@ -59,9 +59,9 @@ class TypeScriptTransformerConfig
         return $this;
     }
 
-    public function classPropertyReplacements(array $classPropertyReplacements): self
+    public function defaultTypeReplacements(array $defaultTypeReplacements): self
     {
-        $this->classPropertyReplacements = $classPropertyReplacements;
+        $this->defaultTypeReplacements = $defaultTypeReplacements;
 
         return $this;
     }
@@ -103,15 +103,15 @@ class TypeScriptTransformerConfig
         );
     }
 
-    public function getClassPropertyReplacements(): array
+    public function getDefaultTypeReplacements(): array
     {
         $typeResolver = new TypeResolver();
 
         $replacements = [];
 
-        foreach ($this->classPropertyReplacements as $class => $replacement) {
+        foreach ($this->defaultTypeReplacements as $class => $replacement) {
             if (! class_exists($class)) {
-                throw InvalidClassPropertyReplacer::classDoesNotExist($class);
+                throw InvalidDefaultTypeReplacer::classDoesNotExist($class);
             }
 
             $replacements[$class] = $replacement instanceof Type
