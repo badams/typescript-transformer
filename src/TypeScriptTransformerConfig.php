@@ -6,7 +6,7 @@ use phpDocumentor\Reflection\Type;
 use phpDocumentor\Reflection\TypeResolver;
 use Spatie\TypeScriptTransformer\Collectors\AnnotationCollector;
 use Spatie\TypeScriptTransformer\Exceptions\InvalidClassPropertyReplacer;
-use Spatie\TypeScriptTransformer\Support\TransformerFactory;
+use Spatie\TypeScriptTransformer\TransformerFactory;
 
 class TypeScriptTransformerConfig
 {
@@ -19,6 +19,8 @@ class TypeScriptTransformerConfig
     private string $outputFile = 'types.d.ts';
 
     private array $classPropertyReplacements = [];
+
+    private bool $enableFormatting = false;
 
     public function __construct()
     {
@@ -65,6 +67,13 @@ class TypeScriptTransformerConfig
         return $this;
     }
 
+    public function enableFormatting(): self
+    {
+        $this->enableFormatting = true;
+
+        return $this;
+    }
+
     public function getSearchingPath(): string
     {
         return $this->searchingPath;
@@ -76,7 +85,7 @@ class TypeScriptTransformerConfig
         $factory = new TransformerFactory($this);
 
         return array_map(
-            fn (string $transformer) => $factory->create($transformer),
+            fn(string $transformer) => $factory->create($transformer),
             $this->transformers
         );
     }
@@ -90,7 +99,7 @@ class TypeScriptTransformerConfig
     public function getCollectors(): array
     {
         return array_map(
-            fn (string $collector) => new $collector($this),
+            fn(string $collector) => new $collector($this),
             $this->collectors
         );
     }
@@ -112,5 +121,10 @@ class TypeScriptTransformerConfig
         }
 
         return $replacements;
+    }
+
+    public function isFormattingEnabled(): bool
+    {
+        return $this->enableFormatting;
     }
 }
